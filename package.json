@@ -9,13 +9,48 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onCommand:vscode-pets.spawn-pet"
+  ],
   "main": "./extension.js",
   "contributes": {
     "commands": [{
       "command": "accessibility-adventure.helloWorld",
       "title": "Hello World"
-    }]
+    }],
+    "views": {
+      "explorer": [
+          {
+              "type": "webview",
+              "id": "etsView",
+              "name": "Accessibility Adventure",
+              "when": "true",
+              "icon": ""
+          }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "vscode-pets.spawn-pet",
+          "when": "true",
+          "group": "navigation@1"
+        }
+      ]
+    },
+    "configuration": [
+      {
+        "accessibility-adventure.position": {
+            "type": "string",
+            "enum": [
+                "panel",
+                "explorer"
+            ],
+            "default": "explorer",
+            "description": "VSCode pets webview position"
+        }
+      }
+    ]
   },
   "scripts": {
     "lint": "eslint .",
@@ -32,4 +67,5 @@
     "typescript": "^5.2.2",
     "@vscode/test-electron": "^2.3.6"
   }
+
 }
